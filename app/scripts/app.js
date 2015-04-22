@@ -1,14 +1,5 @@
-'use strict';
-
-/**
- * @ngdoc overview
- * @name mytodoApp
- * @description
- * # mytodoApp
- *
- * Main module of the application.
- */
-angular
+(function(){
+  var app = angular
   .module('mytodoApp', [
     'ngAnimate',
     'ngCookies',
@@ -18,11 +9,11 @@ angular
     'ngTouch',
     'ui.sortable',
     'LocalStorageModule'
-  ])
-  .config(['localStorageServiceProvider', function(localStorageServiceProvider){
+  ]);
+  app.config(['localStorageServiceProvider', function(localStorageServiceProvider){
     localStorageServiceProvider.setPrefix('ls');
-  }])
-  .config(['$httpProvider', function($httpProvider) {
+  }]);
+  app.config(['$httpProvider', function($httpProvider) {
         //initialize get if not there
     if (!$httpProvider.defaults.headers.get) {
       $httpProvider.defaults.headers.get = {};    
@@ -36,8 +27,8 @@ angular
     // extra
     $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
     $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
-    }])
-  .config(function ($routeProvider) {
+    }]);
+  app.config(['$routeProvider',function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -50,4 +41,5 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  }]);
+})();

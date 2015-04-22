@@ -1,14 +1,6 @@
-'use strict';
-
-/**
- * @ngdoc function
- * @name mytodoApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the mytodoApp
- */
- angular.module('mytodoApp')
- .controller('MainCtrl', function ($scope,$http,$window) {
+(function(){
+	var app = angular.module('mytodoApp')
+	app.controller('MainCtrl', function ($scope,$http,$window) {
     $scope.json = [];
     $http.get('upload/BlueSky.json').success(function(data) {
     	$scope.json = data;
@@ -19,6 +11,7 @@
     $scope.redirectToTrackingSite = function(){
     	$window.open($scope.urlpart1+$scope.json.tn+$scope.urlpart2, '_blank'); 
     };
-
-
 });
+})();
+
+
